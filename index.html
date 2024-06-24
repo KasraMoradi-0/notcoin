@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotCoin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .coin-counter {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .coin-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .coin-button:active {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="coin-counter">Coins: <span id="coinCount">0</span></div>
+        <button class="coin-button" onclick="incrementCoins()">Click to get a coin</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Load saved coin count from local storage
+            let savedCoins = localStorage.getItem("coinCount");
+            if (savedCoins) {
+                document.getElementById("coinCount").textContent = savedCoins;
+            }
+        });
+
+        function incrementCoins() {
+            let coinCountElement = document.getElementById("coinCount");
+            let coinCount = parseInt(coinCountElement.textContent);
+            coinCount += 1;
+            coinCountElement.textContent = coinCount;
+            localStorage.setItem("coinCount", coinCount);
+        }
+    </script>
+</body>
+</html>
